@@ -1,5 +1,13 @@
 import styled from "@emotion/styled";
 
+export const DashboardAddTagButton = styled.button`
+margin-bottom: 20px;
+`
+
+export const DashboardContainer = styled.div`
+margin: 30px;
+`
+
 export const DashboardHeader = styled.div`
   display: flex;
   justify-content: center;
@@ -9,8 +17,7 @@ export const DashboardHeader = styled.div`
 
 export const DashboardTagList = styled.ul`
 display: flex;
-flex-direction: row;
 flex-wrap: wrap;
-max-width: 50%;
-margin: 0 auto;
+list-style-type: none;
+padding: 0;
 `
