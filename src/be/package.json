@@ -10,8 +10,6 @@
     "nodemon": "^2.0.20"
   },
   "scripts": {
-    "client": "yarn --cwd client run start",
-    "server": "nodemon index",
-    "start": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "nodemon index"
   }
 }
