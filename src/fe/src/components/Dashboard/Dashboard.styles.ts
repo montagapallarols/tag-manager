@@ -56,6 +56,7 @@ export const DashboardHeader = styled.div`
 
 export const DashboardTagList = styled.ul`
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
   list-style-type: none;
   padding: 0;
