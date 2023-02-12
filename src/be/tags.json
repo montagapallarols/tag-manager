@@ -1,6 +1,6 @@
 [
-  { "id": "1", "value": "JavaScript" },
-  { "id": "2", "value": "React" },
-  { "id": "3", "value": "TypeScript" },
-  { "id": "4", "value": "Next.js" }
+  { "id": "19e37a63-ad64-41a4-9add-85d106cbcdad", "value": "JavaScript" },
+  { "id": "0ea5f8f3-ead7-4d00-a995-cab1f11bb6be", "value": "React" },
+  { "id": "0b716875-9dc7-4161-958d-1e9774f5b353", "value": "TypeScript" },
+  { "id": "ccc5f370-0b30-4dd8-bd98-11711b5e64b7", "value": "Next.js" }
 ]
