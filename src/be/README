@@ -3,4 +3,5 @@
 - Run the following commands:
 
   - `cd src/be/`
+  - `yarn install`
   - `yarn dev`
