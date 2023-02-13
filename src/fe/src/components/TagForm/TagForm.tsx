@@ -26,6 +26,7 @@ const TagForm: React.FC<TagFormProps> = ({ onSubmit }) => {
     <S.DashboardTagForm onSubmit={handleSubmit}>
       <S.DashboardTagInputWrapper>
         <S.DashboardTagInput
+          data-testid="tag-input"
           ref={inputRef}
           type="text"
           name="tag"
@@ -38,6 +39,7 @@ const TagForm: React.FC<TagFormProps> = ({ onSubmit }) => {
           }
         ></S.DashboardTagInput>
         <S.DashboardTagButton
+          data-testid="tag-submit-button"
           type="submit"
           title="Add new tag"
           aria-label="Add tag"
