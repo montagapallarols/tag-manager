@@ -1,8 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
-  display: flex;
-  width: 100vw;
+export const LayoutContainer = styled.div`
   height: 100vh;
-  background-color: #fff;
+  width: 100vw;
 `;
