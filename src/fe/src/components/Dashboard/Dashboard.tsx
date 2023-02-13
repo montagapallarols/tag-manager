@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { v4 as uuid } from "uuid";
+import Image from "next/image";
 
 import Tag from "@components/Tag/Tag";
 import TagForm from "@components/TagForm/TagForm";
@@ -9,11 +10,13 @@ import { ITag } from "@interfaces/ITag";
 import { States } from "@enums/states";
 
 import * as S from "./Dashboard.styles";
+import Edit from "../../../public/assets/edit.svg";
 
 const Dashboard: React.FC = () => {
   const [tags, setTags] = useState<ITag[]>([]);
   const [status, setStatus] = useState<States>(States.IDLE);
   const [addTagStatus, setAddTagStatus] = useState<States>(States.IDLE);
+  const [tagToEdit, setTagToEdit] = useState<string>("");
 
   const baseUrl = "http://localhost:4000";
 
@@ -69,7 +72,9 @@ const Dashboard: React.FC = () => {
   const editTag = useCallback(
     async (id: string, value: string) => {
       try {
-        await axios.put(`${baseUrl}/tags/${id}`, value);
+        await axios.put(`${baseUrl}/tags/${id}`, {
+          value: value,
+        });
         fetchData();
       } catch (error) {
         console.log(error);
@@ -78,11 +83,15 @@ const Dashboard: React.FC = () => {
     [fetchData]
   );
 
+  const onClickEdit = (id: string) => {
+    setTagToEdit(id);
+  };
+
   return (
     <S.DashboardContainer data-testid="dashboard-container">
       <S.DashboardHeader>Tag Manager</S.DashboardHeader>
 
-      <TagForm onSubmit={addNewTag} data-testid="dashboard-form"/>
+      <TagForm onSubmit={addNewTag} data-testid="dashboard-form" />
 
       <S.DashboardTagListHeader>Tags:</S.DashboardTagListHeader>
 
@@ -92,7 +101,18 @@ const Dashboard: React.FC = () => {
         <S.DashboardTagList data-testid="dashboard-list">
           {tags?.map((tag: ITag) => (
             <S.TagWrapper>
-              <Tag key={tag.id} tag={tag} deleteTag={deleteTag} data-testid="dashboard-tag"/>
+              <S.TagEditButton onClick={() => onClickEdit(tag.id)}>
+                <Image src={Edit} alt="close" height={15} width={15} />
+              </S.TagEditButton>
+              <Tag
+                key={tag.id}
+                data-testid="dashboard-tag"
+                tag={tag}
+                deleteTag={deleteTag}
+                tagToEdit={tagToEdit}
+                editTag={editTag}
+                setTagToEdit={setTagToEdit}
+              />
             </S.TagWrapper>
           ))}
         </S.DashboardTagList>

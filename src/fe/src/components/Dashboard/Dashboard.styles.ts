@@ -42,4 +42,5 @@ width: 25px;
 cursor: pointer;
 border: none;
 margin-left: 6px;
+background-color: #E9E7E7;
 `

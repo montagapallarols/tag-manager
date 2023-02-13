@@ -12,6 +12,8 @@ export const TagContainer = styled.li`
   margin-bottom: 10px;
 `;
 
+export const TagEditForm = styled.form``
+
 export const TagEditInput = styled.input``
 
 export const TagRemoveButton = styled.button`
