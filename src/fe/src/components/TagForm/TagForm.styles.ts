@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
+import { breakpointMin } from "@styles/breakpoints";
 
-export const DashboardTagForm = styled.form``;
+export const DashboardTagForm = styled.form`
+  ${breakpointMin.md} {
+    margin: 0 auto;
+    max-width: 50%;
+  }
+`;
 
 export const DashboardTagInputWrapper = styled.div`
   flex-direction: row;
@@ -33,7 +39,7 @@ export const DashboardTagButton = styled.button`
   color: #fff;
   cursor: pointer;
 
-  &:hover{
+  &:hover {
     background-color: #575757;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.19);
   }

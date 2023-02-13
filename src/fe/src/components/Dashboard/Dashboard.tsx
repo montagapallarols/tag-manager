@@ -14,12 +14,11 @@ const Dashboard: React.FC = () => {
   const [tags, setTags] = useState<ITag[]>([]);
   const [status, setStatus] = useState<States>(States.IDLE);
   const [addTagStatus, setAddTagStatus] = useState<States>(States.IDLE);
-  const [deleteTagStatus, setDeleteTagStatus] = useState<States>(States.IDLE);
 
   const baseUrl = "http://localhost:4000";
 
   const isLoading = status === "loading";
-  const isError = addTagStatus === "error" || deleteTagStatus === "error";
+  const isError = addTagStatus === "error";
 
   const fetchData = useCallback(async () => {
     setStatus(States.LOADING);
@@ -54,37 +53,51 @@ const Dashboard: React.FC = () => {
 
   const deleteTag = useCallback(
     async (id: string) => {
-      setDeleteTagStatus(States.LOADING);
       try {
         await axios.delete(`${baseUrl}/tags/${id}`);
-        setDeleteTagStatus(States.SUCCESS);
         // Update tags list after delete
-        setTags((prevTags: ITag[]) => prevTags.filter((tag: ITag) => tag.id !== id));
+        setTags((prevTags: ITag[]) =>
+          prevTags.filter((tag: ITag) => tag.id !== id)
+        );
       } catch (error) {
-        setDeleteTagStatus(States.ERROR);
+        console.log(error);
       }
     },
     [tags]
   );
 
+  const editTag = useCallback(
+    async (id: string, value: string) => {
+      try {
+        await axios.put(`${baseUrl}/tags/${id}`, value);
+        fetchData();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [fetchData]
+  );
+
   return (
-    <S.DashboardContainer>
+    <S.DashboardContainer data-testid="dashboard-container">
       <S.DashboardHeader>Tag Manager</S.DashboardHeader>
 
-      <TagForm onSubmit={addNewTag} />
+      <TagForm onSubmit={addNewTag} data-testid="dashboard-form"/>
 
       <S.DashboardTagListHeader>Tags:</S.DashboardTagListHeader>
 
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <S.DashboardTagList>
+        <S.DashboardTagList data-testid="dashboard-list">
           {tags?.map((tag: ITag) => (
-            <Tag key={tag.id} tag={tag} deleteTag={deleteTag} />
+            <S.TagWrapper>
+              <Tag key={tag.id} tag={tag} deleteTag={deleteTag} data-testid="dashboard-tag"/>
+            </S.TagWrapper>
           ))}
         </S.DashboardTagList>
       )}
-      
+
       {isError && <div>Something went wrong. Please try again.</div>}
     </S.DashboardContainer>
   );

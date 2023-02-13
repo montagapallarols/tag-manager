@@ -23,28 +23,3 @@ export enum breakpointsMin {
     xxl: `@media (min-width: ${breakpointMinSize.xxl})`,
   };
   
-  // breakpointsMax
-  export enum breakpointsMax {
-    sm = 374,
-    md = 574,
-    lg = 767,
-    xl = 991,
-    xxl = 1439,
-  }
-  
-  export const breakpointMaxSize = {
-    sm: `${breakpointsMax.sm}px`,
-    md: `${breakpointsMax.md}px`,
-    lg: `${breakpointsMax.lg}px`,
-    xl: `${breakpointsMax.xl}px`,
-    xxl: `${breakpointsMax.xxl}px`,
-  };
-  
-  export const breakpointMax = {
-    sm: `@media (max-width: ${breakpointMaxSize.sm})`,
-    md: `@media (max-width: ${breakpointMaxSize.md})`,
-    lg: `@media (max-width: ${breakpointMaxSize.lg})`,
-    xl: `@media (max-width: ${breakpointMaxSize.xl})`,
-    xxl: `@media (max-width: ${breakpointMaxSize.xxl})`,
-  };
-  
