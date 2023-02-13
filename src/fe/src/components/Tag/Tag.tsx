@@ -14,7 +14,13 @@ interface TagProps {
   setTagToEdit: (tagToEdit: string) => void;
 }
 
-const Tag: React.FC<TagProps> = ({ tag, deleteTag, tagToEdit, editTag, setTagToEdit }) => {
+const Tag: React.FC<TagProps> = ({
+  tag,
+  deleteTag,
+  tagToEdit,
+  editTag,
+  setTagToEdit,
+}) => {
   const [editValue, setEditValue] = useState<string>(tag.value);
   const onClickRemove = (id: string) => {
     deleteTag(id);
@@ -22,23 +28,24 @@ const Tag: React.FC<TagProps> = ({ tag, deleteTag, tagToEdit, editTag, setTagToE
 
   const submitEditedValue = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    editTag(tag.id, editValue)
-    setTagToEdit("")
-  }
+    editTag(tag.id, editValue);
+    setTagToEdit("");
+  };
 
   return (
     <S.TagContainer data-testid="tag">
       {tagToEdit === tag.id ? (
-        <S.TagEditForm onSubmit={submitEditedValue}>
-        <S.TagEditInput
-          value={editValue}
-          type="text"
-          name="edit-tag"
-          aria-label="Edit tag"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setEditValue(e.target.value)
-          }
-        />
+        <S.TagEditForm onSubmit={submitEditedValue} data-testid="tag-edit-form">
+          <S.TagEditInput
+            data-testid="tag-edit-input"
+            value={editValue}
+            type="text"
+            name="edit-tag"
+            aria-label="Edit tag"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setEditValue(e.target.value)
+            }
+          />
         </S.TagEditForm>
       ) : (
         tag?.value
