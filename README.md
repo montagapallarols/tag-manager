@@ -10,6 +10,6 @@ The tech stack used is:
 - Jest + Testing Library
 
 
-To start the client, run `yarn dev` in the fe folder. 
+To start the client, run `yarn dev` in the `fe` folder. 
 
-To start the server, run `yarn dev` in the be folder. 
+To start the server, run `yarn dev` in the `be` folder. 
